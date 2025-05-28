@@ -1,2 +1,0 @@
-# damaidiri
-Aplikasi Damai Diri 
