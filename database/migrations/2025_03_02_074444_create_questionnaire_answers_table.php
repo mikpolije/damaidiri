@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('questionnaire_answers', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('questionnaire_id', false, true);
+            $table->string('name');
+            $table->decimal('score', 5, 2);
+            $table->softDeletes();
+            $table->timestamps();
+
+            $table->foreign('questionnaire_id')->references('id')->on('questionnaires')->onDelete('cascade')->onUpdate('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('questionnaire_answers');
+    }
+};
